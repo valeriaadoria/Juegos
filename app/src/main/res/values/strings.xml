@@ -10,4 +10,6 @@
     <string name="consola">Consola</string>
     <string name="comprar">Comprar</string>
     <string name="_130_00_mxn">130.00 MXN</string>
+    <string name="su_edad">Su edad</string>
+    <string name="su_altura">Su altura</string>
 </resources>

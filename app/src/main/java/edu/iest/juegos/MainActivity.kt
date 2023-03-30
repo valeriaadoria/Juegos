@@ -20,12 +20,18 @@ import androidx.appcompat.widget.SwitchCompat
 class MainActivity : AppCompatActivity() {
     private lateinit var tvBienvenido: TextView
     private lateinit var etNombre: EditText
+    private lateinit var etEdad: EditText
+    private lateinit var etAltura: EditText
     private lateinit var bnGuardar: Button
     private lateinit var switchPreferencias: SwitchCompat
     private val NOMBRE_KEY = "nombre"
+    private val EDAD_KEY = "edad"
+    private val ALTURA_KEY = "altura"
     private val SWITCH_KEY = "'switch_estado'"
     private val NOMBRE_INSTANCIA = "nombre_instancia"
     private var nombre: String = ""
+    private var edad: Int = 0
+    private var altura: Float = 0.0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
