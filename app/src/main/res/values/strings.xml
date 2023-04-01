@@ -12,4 +12,6 @@
     <string name="_130_00_mxn">130.00 MXN</string>
     <string name="su_edad">Su edad</string>
     <string name="su_altura">Su altura</string>
+    <string name="su_presupuesto">Su presupuesto</string>
+    <string name="vertical">Vertical</string>
 </resources>

@@ -20,7 +20,7 @@
         android:id="@+id/etNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:autofillHints="no"
         android:hint="@string/su_nombre_porfavor"
         android:inputType="text"
@@ -34,7 +34,6 @@
         android:id="@+id/etEdad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:autofillHints="no"
         android:hint="@string/su_edad"
         android:inputType="text"
@@ -48,7 +47,6 @@
         android:id="@+id/etAltura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:autofillHints="no"
         android:hint="@string/su_altura"
         android:inputType="text"
@@ -57,6 +55,19 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etEdad" />
+
+    <EditText
+        android:id="@+id/etPresupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="no"
+        android:hint="@string/su_presupuesto"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAltura" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchPreferencias"

@@ -22,16 +22,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etNombre: EditText
     private lateinit var etEdad: EditText
     private lateinit var etAltura: EditText
+    private lateinit var etPresupuesto: EditText
     private lateinit var bnGuardar: Button
     private lateinit var switchPreferencias: SwitchCompat
     private val NOMBRE_KEY = "nombre"
     private val EDAD_KEY = "edad"
     private val ALTURA_KEY = "altura"
+    private val PRESUPUESTO_KEY = "presupuesto"
     private val SWITCH_KEY = "'switch_estado'"
     private val NOMBRE_INSTANCIA = "nombre_instancia"
     private var nombre: String = ""
     private var edad: Int = 0
     private var altura: Float = 0.0F
+    private var presupuesto: Float = 0.0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,9 @@ class MainActivity : AppCompatActivity() {
         inicializarVistas()
 
         Log.d("PREFERENCIAS",savedInstanceState?.getString(NOMBRE_KEY).toString())
+        Log.d("PREFERENCIAS",savedInstanceState?.getString(EDAD_KEY).toString())
+        Log.d("PREFERENCIAS",savedInstanceState?.getString(ALTURA_KEY).toString())
+        Log.d("PREFERENCIAS",savedInstanceState?.getString(PRESUPUESTO_KEY).toString())
 
     /*    etNombre = findViewById(R.id.etNombre)
 
@@ -63,8 +69,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         Log.d("PREFERENCIAS", "onSaveInstanceState")
         outState.putString(NOMBRE_KEY, nombre )
-        outState?.run {
+        outState.putString(EDAD_KEY, edad.toString())
+        outState.putString(ALTURA_KEY, altura.toString())
+        outState.putString(PRESUPUESTO_KEY, presupuesto.toString())
+
+        outState.run {
             putString(NOMBRE_KEY, nombre)
+            putString(EDAD_KEY, edad.toString())
+            putString(ALTURA_KEY, altura.toString())
+            putString(PRESUPUESTO_KEY, presupuesto.toString())
         }
         // call superclass to save any view hierarchy
         super.onSaveInstanceState(outState)
@@ -97,25 +110,38 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun cambiarTextoBienvenida(nombre: String) {
+    private fun cambiarTextoBienvenida(nombre: String, edad: Int) {
         if (!TextUtils.isEmpty(nombre)) {
-            tvBienvenido.text = "Bienvenido " + nombre
+            tvBienvenido.text = "Bienvenido " + nombre + " " +edad
         }
     }
 
     private fun inicializarVistas() {
         tvBienvenido = findViewById(R.id.tvBienvenido)
         etNombre = findViewById(R.id.etNombre)
+        etEdad = findViewById(R.id.etEdad)
         bnGuardar = findViewById(R.id.bnGuardar)
-      //  switchPreferencias = findViewById(R.id.switchPreferencias)
+        switchPreferencias = findViewById(R.id.switchPreferencias)
+
+     /*   if(switchPreferencias.isChecked){
+            //esta activado
+            nombre= "VAleria"
+        }else{
+            nombre= "VAleria"
+        }
+        */
 
         bnGuardar.setOnClickListener {
             nombre = etNombre.text.toString()
-            cambiarTextoBienvenida(nombre)
+            edad = etEdad.text.toString().toInt()
+            cambiarTextoBienvenida(nombre,edad)
             val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
             val editor = miSharedPreferences.edit()
             editor.putString(NOMBRE_KEY, nombre)
             editor.apply()
+           // val i = Intent(this, activity_lista_juegos::class.java)
+
+        //    startActivity(i)
         }
     }
 

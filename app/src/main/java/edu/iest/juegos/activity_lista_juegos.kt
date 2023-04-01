@@ -16,13 +16,16 @@ class activity_lista_juegos : AppCompatActivity() {
         val juegos = FakerVideojuego().getVideogames()
         val recycler = findViewById<RecyclerView>(R.id.recyclerJuegos)
 
-        val CANTIDAD_COLUMNAS = 2
-        var administradorDeLayouts =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val CANTIDAD_COLUMNAS = 1
 
+        //VERTICAl
+        //var administradorDeLayouts =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        /*horizontal
         administradorDeLayouts =  LinearLayoutManager(this,
-            LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager.VERTICAL, false)*/
 
-        administradorDeLayouts = GridLayoutManager(this,CANTIDAD_COLUMNAS)
+        var administradorDeLayouts = GridLayoutManager(this,CANTIDAD_COLUMNAS)
         recycler.layoutManager = administradorDeLayouts
         recycler.adapter = VideojuegoAdapter(juegos, this)
 

@@ -9,12 +9,10 @@
 
     <ImageView
         android:id="@+id/iMario"
-
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="30dp"
         android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mario" />
@@ -30,7 +28,7 @@
         android:textColor="#673AB7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iMario"
-        app:layout_constraintTop_toTopOf="@id/iMario" />
+        app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
         android:id="@+id/consola"
