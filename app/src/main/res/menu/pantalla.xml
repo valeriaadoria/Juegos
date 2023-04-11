@@ -9,19 +9,19 @@
 
     <item
         android:id="@+id/horizontal"
-        android:title="@string/vertical"
-        android:icon="@drawable/ic_baseline_panorama_vertical_24"
+        android:title="@string/horizontal"
+        android:icon="@drawable/ic_baseline_panorama_horizontal_24"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/doscolum"
-        android:title="@string/vertical"
-        android:icon="@drawable/ic_baseline_panorama_vertical_24"
+        android:title="@string/dos_columnas"
+        android:icon="@drawable/ic_baseline_vertical_split_24"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/trescolum"
-        android:title="@string/vertical"
-        android:icon="@drawable/ic_baseline_panorama_vertical_24"
+        android:title="@string/tres_columnas"
+        android:icon="@drawable/ic_baseline_view_column_24"
         app:showAsAction="always"/>
 </menu>

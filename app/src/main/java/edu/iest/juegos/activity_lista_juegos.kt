@@ -1,14 +1,18 @@
 package edu.iest.juegos
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.iest.juegos.adapter.VideojuegoAdapter
 import edu.iest.juegos.models.FakerVideojuego
 
 class activity_lista_juegos : AppCompatActivity() {
+    private lateinit var FAB: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_juegos)
@@ -29,5 +33,15 @@ class activity_lista_juegos : AppCompatActivity() {
         recycler.layoutManager = administradorDeLayouts
         recycler.adapter = VideojuegoAdapter(juegos, this)
 
+        FAB= findViewById(R.id.fab)
+
+        FAB.setOnClickListener {
+            val i = Intent(this, preferencias::class.java)
+            startActivity(i)
+        }
+
     }
+
+
+
 }

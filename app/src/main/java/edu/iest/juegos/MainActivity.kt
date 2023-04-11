@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
     private val SWITCH_KEY = "'switch_estado'"
     private val NOMBRE_INSTANCIA = "nombre_instancia"
     private var nombre: String = ""
-    private var edad: Int = 0
-    private var altura: Float = 0.0F
-    private var presupuesto: Float = 0.0F
+    private var edad: String = ""
+    private var altura: String = ""
+    private var presupuesto: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,15 +69,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         Log.d("PREFERENCIAS", "onSaveInstanceState")
         outState.putString(NOMBRE_KEY, nombre )
-        outState.putString(EDAD_KEY, edad.toString())
-        outState.putString(ALTURA_KEY, altura.toString())
-        outState.putString(PRESUPUESTO_KEY, presupuesto.toString())
+        outState.putString(EDAD_KEY, edad)
+        outState.putString(ALTURA_KEY, altura)
+        outState.putString(PRESUPUESTO_KEY, presupuesto)
 
         outState.run {
             putString(NOMBRE_KEY, nombre)
-            putString(EDAD_KEY, edad.toString())
-            putString(ALTURA_KEY, altura.toString())
-            putString(PRESUPUESTO_KEY, presupuesto.toString())
+            putString(EDAD_KEY, edad)
+            putString(ALTURA_KEY, altura)
+            putString(PRESUPUESTO_KEY, presupuesto)
         }
         // call superclass to save any view hierarchy
         super.onSaveInstanceState(outState)
@@ -89,9 +89,13 @@ class MainActivity : AppCompatActivity() {
         Log.d("PREFERENCIAS","onResume")
         if(TextUtils.isEmpty(nombre)){
             val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
-            nombre=miSharedPreferences.getString(NOMBRE_KEY,"").toString()
+            nombre=miSharedPreferences.getString(NOMBRE_KEY,"valeria").toString()
         }
-        tvBienvenido.text =nombre
+        if(TextUtils.isEmpty(edad)){
+            val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
+            edad=miSharedPreferences.getString(NOMBRE_KEY,"21").toString()
+        }
+        tvBienvenido.text=nombre
         super.onResume()
     }
 
@@ -110,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun cambiarTextoBienvenida(nombre: String, edad: Int) {
+    private fun cambiarTextoBienvenida(nombre: String, edad: String) {
         if (!TextUtils.isEmpty(nombre)) {
             tvBienvenido.text = "Bienvenido " + nombre + " " +edad
         }
@@ -120,6 +124,8 @@ class MainActivity : AppCompatActivity() {
         tvBienvenido = findViewById(R.id.tvBienvenido)
         etNombre = findViewById(R.id.etNombre)
         etEdad = findViewById(R.id.etEdad)
+        etAltura = findViewById(R.id.etAltura)
+        etPresupuesto = findViewById(R.id.etPresupuesto)
         bnGuardar = findViewById(R.id.bnGuardar)
         switchPreferencias = findViewById(R.id.switchPreferencias)
 
@@ -133,15 +139,18 @@ class MainActivity : AppCompatActivity() {
 
         bnGuardar.setOnClickListener {
             nombre = etNombre.text.toString()
-            edad = etEdad.text.toString().toInt()
+            edad = etEdad.text.toString()
+            altura = etAltura.text.toString()
+            presupuesto = etPresupuesto.text.toString()
             cambiarTextoBienvenida(nombre,edad)
             val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
             val editor = miSharedPreferences.edit()
-            editor.putString(NOMBRE_KEY, nombre)
-            editor.apply()
-           // val i = Intent(this, activity_lista_juegos::class.java)
-
-        //    startActivity(i)
+            editor.putString(NOMBRE_KEY, nombre).apply()
+            editor.putString(EDAD_KEY, edad).apply()
+            editor.putString(ALTURA_KEY, altura).apply()
+            editor.putString(PRESUPUESTO_KEY, presupuesto).apply()
+            val i = Intent(this, activity_lista_juegos::class.java)
+            startActivity(i)
         }
     }
 
