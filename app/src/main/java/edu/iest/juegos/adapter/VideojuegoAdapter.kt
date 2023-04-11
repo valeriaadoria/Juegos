@@ -22,6 +22,7 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
         val tvNombre : TextView
         val tvPrecio : TextView
         val tvConsola : TextView
+        val tvClasif : TextView
         val ivFoto : ImageView
         val bnCompra : Button
 
@@ -30,6 +31,7 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
             //Define click listener for the ViewHolder´s view
             tvNombre = view.findViewById(R.id.nombre)
             tvPrecio = view.findViewById(R.id.precio)
+            tvClasif = view.findViewById(R.id.clasif)
             ivFoto = view.findViewById(R.id.iMario)
             tvConsola = view.findViewById(R.id.consola)
             bnCompra = view.findViewById(R.id.bnComprar)
@@ -46,6 +48,7 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
         holder.tvNombre.text = videojuego.nombre
         holder.tvConsola.text = videojuego.consola
         holder.tvPrecio.text = videojuego.precio.toString()
+        holder.tvClasif.text = videojuego.clasificacion
         holder.ivFoto.setImageResource(videojuego.imagen)
     }
 

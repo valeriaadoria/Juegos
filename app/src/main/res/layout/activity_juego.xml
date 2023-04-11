@@ -51,6 +51,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nombre" />
 
+    <TextView
+        android:id="@+id/clasif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/clasif"
+
+        app:layout_constraintTop_toBottomOf="@id/consola"
+        app:layout_constraintStart_toEndOf="@id/iMario"/>
+
     <Button
         android:id="@+id/bnComprar"
         android:layout_width="wrap_content"
