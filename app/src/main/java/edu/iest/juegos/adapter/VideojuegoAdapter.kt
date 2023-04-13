@@ -1,12 +1,15 @@
 package edu.iest.juegos.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import edu.iest.juegos.R
 import edu.iest.juegos.models.Videojuego
@@ -16,7 +19,7 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
     var innerContext: Context = context
 
     inner class ContenedorDeVista(view: View) :
-    RecyclerView.ViewHolder(view)   {
+    RecyclerView.ViewHolder(view), View.OnClickListener {
         //Aqui haremos el inflate de layout
         //Aqui haremos la asignacion de objetos
         val tvNombre : TextView
@@ -35,8 +38,31 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
             ivFoto = view.findViewById(R.id.iMario)
             tvConsola = view.findViewById(R.id.consola)
             bnCompra = view.findViewById(R.id.bnComprar)
+
+            bnCompra.setOnClickListener(this)
+        }
+
+
+        override fun onClick(p0: View?) {
+            // Obtener el valor extra del Intent
+        //    val edad2 = intent.getStringExtra("edad")
+            // Hacer algo con el valor extra...
+
+            if (adapterPosition>=0){
+                val videojuego: Videojuego = innerVideojuegos.get(adapterPosition)
+                videojuego.nombre
+                videojuego.clasificacion
+                videojuego.precio
+                //logica con el dato
+                Toast.makeText(innerContext, "Seleccionaste "+ videojuego.nombre, Toast.LENGTH_SHORT).show()
+                bnCompra.text="Adquirido"
+                bnCompra.isEnabled = false
+
+            }
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContenedorDeVista {
         val view= LayoutInflater.from(parent.context).inflate(R.layout.activity_juego,parent,false)

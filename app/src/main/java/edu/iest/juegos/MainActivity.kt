@@ -10,10 +10,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.SwitchCompat
 
@@ -29,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private val EDAD_KEY = "edad"
     private val ALTURA_KEY = "altura"
     private val PRESUPUESTO_KEY = "presupuesto"
-    private val SWITCH_KEY = "'switch_estado'"
+    private val SWITCH_KEY = "switch_estado"
     private val NOMBRE_INSTANCIA = "nombre_instancia"
     private var nombre: String = ""
     private var edad: String = ""
@@ -129,30 +126,30 @@ class MainActivity : AppCompatActivity() {
         bnGuardar = findViewById(R.id.bnGuardar)
         switchPreferencias = findViewById(R.id.switchPreferencias)
 
-     /*   if(switchPreferencias.isChecked){
-            //esta activado
-            nombre= "VAleria"
-        }else{
-            nombre= "VAleria"
-        }
-        */
+
 
         bnGuardar.setOnClickListener {
-            nombre = etNombre.text.toString()
-            edad = etEdad.text.toString()
-            altura = etAltura.text.toString()
-            presupuesto = etPresupuesto.text.toString()
-            cambiarTextoBienvenida(nombre,edad)
-            val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
-            val editor = miSharedPreferences.edit()
-            editor.putString(NOMBRE_KEY, nombre).apply()
-            editor.putString(EDAD_KEY, edad).apply()
-            editor.putString(ALTURA_KEY, altura).apply()
-            editor.putString(PRESUPUESTO_KEY, presupuesto).apply()
+            if(switchPreferencias.isChecked){
+                //esta activado
+                nombre = etNombre.text.toString()
+                edad = etEdad.text.toString()
+                altura = etAltura.text.toString()
+                presupuesto = etPresupuesto.text.toString()
+                cambiarTextoBienvenida(nombre,edad)
+                val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
+                val editor = miSharedPreferences.edit()
+                editor.putString(NOMBRE_KEY, nombre).apply()
+                editor.putString(EDAD_KEY, edad).apply()
+                editor.putString(ALTURA_KEY, altura).apply()
+                editor.putString(PRESUPUESTO_KEY, presupuesto).apply()
+            }else{
+                Toast.makeText(this, "No guardaste las preferencias", Toast.LENGTH_SHORT).show()
+            }
             val i = Intent(this, activity_lista_juegos::class.java)
+            i.putExtra("edad", edad.toInt())
+            i.putExtra("presupuesto", presupuesto.toFloat())
             startActivity(i)
         }
     }
-
 
 }
