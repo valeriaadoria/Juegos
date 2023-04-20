@@ -1,5 +1,6 @@
 package edu.iest.juegos.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import edu.iest.juegos.R
+import edu.iest.juegos.activity_lista_juegos
 import edu.iest.juegos.models.Videojuego
 
 class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : RecyclerView.Adapter<VideojuegoAdapter.ContenedorDeVista>(){
@@ -44,6 +46,12 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
 
 
         override fun onClick(p0: View?) {
+
+            val EDAD_KEY = "edad"
+            var edad: Int = 0
+
+
+
             // Obtener el valor extra del Intent
         //    val edad2 = intent.getStringExtra("edad")
             // Hacer algo con el valor extra...
@@ -53,10 +61,40 @@ class VideojuegoAdapter(videojuegos: ArrayList<Videojuego>, context: Context) : 
                 videojuego.nombre
                 videojuego.clasificacion
                 videojuego.precio
-                //logica con el dato
-                Toast.makeText(innerContext, "Seleccionaste "+ videojuego.nombre, Toast.LENGTH_SHORT).show()
-                bnCompra.text="Adquirido"
-                bnCompra.isEnabled = false
+
+                val clasif : String = videojuego.clasificacion
+
+                val miSharedPreferences = innerContext.getSharedPreferences("PERSISTENCIA",
+                    AppCompatActivity.MODE_PRIVATE
+                )
+                edad=miSharedPreferences.getString(EDAD_KEY,"21").toString().toInt()
+
+                if (edad>=18){
+                    //logica con el dato
+                    Toast.makeText(innerContext, "Seleccionaste "+ videojuego.nombre, Toast.LENGTH_SHORT).show()
+                    bnCompra.text="Adquirido"
+                    bnCompra.isEnabled = false
+                }
+                if (edad<=5){
+                    if(clasif=="E+"){
+                        //logica con el dato
+                        Toast.makeText(innerContext, "Seleccionaste "+ videojuego.nombre, Toast.LENGTH_SHORT).show()
+                        bnCompra.text="Adquirido"
+                        bnCompra.isEnabled = false
+                    }else{
+                        Toast.makeText(innerContext, "Intentalo con un juego de clasificacion E+ ", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                if (edad in 6..17){
+                    if(clasif=="R"){
+                        //logica con el dato
+                        Toast.makeText(innerContext, "La clasificacion R es para mayores de edad ", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(innerContext, "Seleccionaste "+ videojuego.nombre, Toast.LENGTH_SHORT).show()
+                        bnCompra.text="Adquirido"
+                        bnCompra.isEnabled = false
+                    }
+                }
 
             }
         }

@@ -42,9 +42,9 @@ class preferencias : AppCompatActivity() {
         tvname.text="Nombre: "+ nombre
         edad=miSharedPreferences.getString(EDAD_KEY,"21").toString()
         tvage.text="Edad: " + edad
-        altura=miSharedPreferences.getString(ALTURA_KEY,"21").toString()
+        altura=miSharedPreferences.getString(ALTURA_KEY,"1.73").toString()
         tvheigh.text= "Estatura: " + altura
-        presupuesto=miSharedPreferences.getString(PRESUPUESTO_KEY,"21").toString()
+        presupuesto=miSharedPreferences.getString(PRESUPUESTO_KEY,"0").toString()
         tvbudget.text="$ " + presupuesto
 
         bnback = findViewById(R.id.back)

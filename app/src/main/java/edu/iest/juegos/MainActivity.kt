@@ -146,8 +146,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "No guardaste las preferencias", Toast.LENGTH_SHORT).show()
             }
             val i = Intent(this, activity_lista_juegos::class.java)
-            i.putExtra("edad", edad.toInt())
-            i.putExtra("presupuesto", presupuesto.toFloat())
             startActivity(i)
         }
     }
